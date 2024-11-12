@@ -5,6 +5,16 @@ function calculateCompoundInterest() {
     var rate = parseFloat(document.getElementById("rate").value) / 100;
     var months = parseFloat(document.getElementById("months").value);
     var frequency = parseInt(document.getElementById("frequency").value);
+    var monthlyAddition = parseInt(document.getElementById("monthly-addition").value);
+
+
+/*
+ 10.000€ 10y 10% = 25.937,42€
+ 0€ 10y 10% (+10.000€/y) =  17,531.17€
+ 10.000€ 10y 10% (+10.000€/y) =  43,468.59€
+*/
+
+
 
     // Check if any of the inputs are not valid (NaN)
     if (isNaN(principal) || isNaN(rate) || isNaN(months) || isNaN(frequency)) {
