@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulario Suma con Selector de Variable</title>
+    <script src="periodOfTimeCalculator.js" defer></script>
+</head>
+<body>
+    <h1>Formulario de Suma con Selector de Variable</h1>
+
+    <form id="formulario">
+        <label for="numero">Introduce el número de días:</label>
+        <input type="number" id="numero" name="numero" required>
+        
+        <label for="selector">Selecciona un stock o índice:</label>
+        <select id="selector" name="selector">
+            <option value="nasdaq">NASDAQ</option>
+            <option value="variable2">Variable 2</option>
+        </select>
+
+        <button type="submit">Sumar</button>
+    </form>
+
+    <p id="resultado"></p>
+</body>
+</html>
