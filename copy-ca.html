@@ -11,33 +11,9 @@
     <link rel="stylesheet" href="style.css" />
     <link rel="stylesheet" href="mediaqueries.css" />
     <script src="/translations/home.js"></script>
+    <script src="/translations/i18n.js"></script>
     <script>
-      document.addEventListener("DOMContentLoaded", function() {
-        var userLang = (navigator.language || navigator.userLanguage).toLowerCase();
-
-        var supportedLangs = ['en', 'ca', 'es'];
-
-        var langCode = userLang.split('-')[0];
-
-        if (!supportedLangs.includes(langCode)) {
-          langCode = 'en';
-        }
-
-        localStorage.setItem('siteLang', langCode);
-
-        function translatePage(language) {
-          document.querySelectorAll('[data-i18n]').forEach(el => {
-            const key = el.getAttribute('data-i18n');
-            if (TRANSLATIONS[language] && TRANSLATIONS[language][key]) {
-              el.textContent = TRANSLATIONS[language][key];
-            } else {
-              console.error(`Traducción no encontrada para la clave "${key}" en el idioma "${language}"`);
-            }
-          });
-        }
-
-        translatePage(langCode);
-      });
+      initI18n(TRANSLATIONS);
     </script>
   </head>
   <body>
@@ -45,7 +21,7 @@
       <div class="logo" data-i18n="enric_ledo"></div>
       <div>
         <ul class="nav-links">
-          <li><a href="#about">Sobre Mi</a></li>
+          <li><a href="#about" data-i18n="sobre_mi"></a></li>
           <li><a href="#experience">Experiència</a></li>
           <li><a href="#projects">Projectes</a></li>
           <li><a href="#contact">Contacte</a></li>

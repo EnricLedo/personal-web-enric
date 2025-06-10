@@ -1,14 +1,15 @@
 const TRANSLATIONS = {
     ca: {
         enric_ledo: "Enric Ledo",
-        // otras traducciones...
+        sobre_mi: "Sobre Mi",
     },
     es: {
         enric_ledo: "Enric Ledo",
-        // otras traducciones...
+        sobre_mi: "Sobre Mi",
+
     },
     en: {
         enric_ledo: "Enric Ledo",
-        // otras traducciones...
+        sobre_mi: "About me",
     }
 };
