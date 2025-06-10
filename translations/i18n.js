@@ -33,6 +33,31 @@ function translatePage(language, translations) {
 function initI18n(translations) {
     document.addEventListener("DOMContentLoaded", function() {
         const langCode = getUserLang();
+        translateHead(langCode, translations);
         translatePage(langCode, translations);
     });
 }
+
+function translateHead(language, translations) {
+    // Traducir el título
+    if (translations[language] && translations[language]['title']) {
+        document.title = translations[language]['title'];
+    }
+
+    // Traducir la meta descripción
+    if (translations[language] && translations[language]['meta_description']) {
+        let metaDesc = document.querySelector('meta[name="description"]');
+        if (metaDesc) {
+            metaDesc.setAttribute('content', translations[language]['meta_description']);
+        }
+    }
+
+    // Traducir la meta keywords
+    if (translations[language] && translations[language]['meta_keywords']) {
+        let metaKeywords = document.querySelector('meta[name="keywords"]');
+        if (metaKeywords) {
+            metaKeywords.setAttribute('content', translations[language]['meta_keywords']);
+        }
+    }
+}
+

@@ -21,15 +21,15 @@
       <div class="logo" data-i18n="enric_ledo"></div>
       <div>
         <ul class="nav-links">
-          <li><a href="#about" data-i18n="sobre_mi"></a></li>
-          <li><a href="#experience">Experiència</a></li>
-          <li><a href="#projects">Projectes</a></li>
-          <li><a href="#contact">Contacte</a></li>
+          <li><a href="#about" data-i18n="about_me"></a></li>
+          <li><a href="#experience" data-i18n="experience"></a></li>
+          <li><a href="#projects" data-i18n="projects"></a></li>
+          <li><a href="#contact" data-i18n="contact"></a></li>
         </ul> 
       </div>
     </nav>
     <nav id="hamburger-nav">
-      <div class="logo">Enric Ledo</div>
+      <div class="logo" data-i18n="enric_ledo"></div>
       <div class="hamburger-menu">
         <div class="hamburger-icon" onclick="toggleMenu()">
           <span></span>
@@ -37,10 +37,10 @@
           <span></span>
         </div>
         <ul class="menu-links">
-          <li><a href="#about" onclick="toggleMenu()">Sobre Mi</a></li>
-          <li><a href="#experience" onclick="toggleMenu()">Experiència</a></li>
-          <li><a href="#projects" onclick="toggleMenu()">Projectes</a></li>
-          <li><a href="#contact" onclick="toggleMenu()">Contacte</a></li>
+          <li><a href="#about" onclick="toggleMenu()" data-i18n="about_me"></a></li>
+          <li><a href="#experience" onclick="toggleMenu()" data-i18n="experience"></a></li>
+          <li><a href="#projects" onclick="toggleMenu()" data-i18n="projects"></a></li>
+          <li><a href="#contact" onclick="toggleMenu()" data-i18n="contact"></a></li>
         </ul>
       </div>
     </nav>
@@ -49,26 +49,27 @@
         <img src="./assets/enric_ledo_profile-rounded.webp" alt="Enric Ledo foto de perfil" />
       </div>
       <div class="section__text">
-        <p class="section__text__p1">Hola, sóc</p>
-        <h1 class="title">Enric Ledo</h1>
-        <p class="section__text__p2">Desenvolupador Backend</p>
+        <p class="section__text__p1" data-i18n="hello_i_am"></p>
+        <h1 class="title" data-i18n="enric_ledo"></h1>
+        <p class="section__text__p2" data-i18n="backend_developer"></p>
         <div class="btn-container">
           <button
             class="btn btn-color-2"
             onclick="window.open('./assets/ES_hire_ENRIC_LEDO.pdf')"
-          >
-            Descargar CV
-          </button>
-          <button class="btn btn-color-1" onclick="location.href='./#contact'">
-            Contacta'm
-          </button>
+            data-i18n="download_cv"
+          ></button>
+          <button
+            class="btn btn-color-1"
+            onclick="location.href='./#contact'"
+            data-i18n="contact_info"
+          ></button>
         </div>
         <div id="socials-container">
           <img
             src="./assets/linkedin.png"
             alt="Mi perfil de LinkedIn"
             class="icon"
-            onclick="window.open('https://www.linkedin.com/in/enric-ledo-00b29a22b/')"
+            onclick="window.open('https://www.linkedin.com/in/enric-ledo')"
           />
           <img
             src="./assets/github.png"
@@ -80,8 +81,8 @@
       </div>
     </section>
     <section id="about">
-      <p class="section__text__p1">Coneix Més</p>
-      <h1 class="title">Sobre Mi</h1>
+      <p class="section__text__p1" data-i18n="get_to_know_more"></p>
+      <h1 class="title" data-i18n="about_me"></h1>
       <div class="section-container">
         <div class="section__pic-container">
           <img
@@ -98,8 +99,11 @@
                 alt="Experience icon"
                 class="icon"
               />
-              <h3>Experiència</h3>
-              <p>7 mesos<br />Desenvolupament en Kotlin</p>
+              <h3 data-i18n="experience"></h3>
+              <p>
+                <span data-i18n="seven_months"></span><br />
+                <span data-i18n="kotlin_development"></span>
+              </p>
             </div>
             <div class="details-container">
               <img
@@ -107,8 +111,11 @@
                 alt="Education icon"
                 class="icon"
               />
-              <h3>Educació</h3>
-              <p>Grau Superior<br/>Desenvolupament d'Aplicacions Multiplataforma</p>
+              <h3 data-i18n="education"></h3>
+              <p>
+                <span data-i18n="technical_degree"></span><br />
+                <span data-i18n="dam"></span>
+              </p>
             </div>
           </div>
           <div class="text-container">
