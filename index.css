@@ -431,55 +431,108 @@ footer p {
   text-align: center;
 }
 
-/* CALCULATOR SECTION */
+/* MEDIA QUERIES */
 
-/* Ocultar los botones de incremento y decremento en inputs de tipo number */
-input[type="number"]::-webkit-inner-spin-button,
-input[type="number"]::-webkit-outer-spin-button {
-    -webkit-appearance: none; /* Para navegadores webkit (Chrome, Safari) */
-    margin: 0; /* Para evitar márgenes en el botón oculto */
+@media screen and (max-width: 1400px) {
+  #profile {
+    height: 83vh;
+    margin-bottom: 6rem;
+  }
+  .about-containers {
+    flex-wrap: wrap;
+  }
+  #contact,
+  #projects {
+    height: fit-content;
+  }
 }
 
-input[type="number"] {
-    -moz-appearance: textfield; /* Para Firefox, se quita la apariencia de número */
+@media screen and (max-width: 1200px) {
+  #desktop-nav {
+    display: none;
+  }
+  #hamburger-nav {
+    display: flex;
+  }
+  #experience,
+  .experience-details-container {
+    margin-top: 2rem;
+  }
+  #profile,
+  .section-container {
+    display: block;
+  }
+  .arrow {
+    display: none;
+  }
+  section,
+  .section-container {
+    height: fit-content;
+  }
+  section {
+    margin: 0 5%;
+  }
+  .section__pic-container {
+    width: 275px;
+    height: 275px;
+    margin: 0 auto 2rem;
+  }
+  .about-containers {
+    margin-top: 0;
+  }
 }
 
-.input-style-calculator {
-  font-family: "Poppins", sans-serif; /* Aplica la misma fuente que el resto del sitio */
-  font-size: 0.9rem; /* Asegúrate de que el tamaño de fuente sea coherente */
-  border-radius: 0.75rem;
-  border-width: 1px;
-  border-style: solid;
-  border-color: #ccc;
-  margin-left: 0.5rem;
-  margin-top: 0.25rem;
-  height: 1.6rem;
-  padding: 0.25rem;
-  padding-left: 0.5rem;
-}
-
-.input-style-calculator:focus {
-  border-color: #ccc; /* Change border color on focus */
-  outline: none; /* Remove default outline */
-  box-shadow: 0 0 0 1px rgba(100, 100, 100, 0.5); /* Optional: blue focus shadow */
-}
-
-.select-style-calculator{
-  font-family: "Poppins", sans-serif; /* Aplica la misma fuente que el resto del sitio */
-  font-size: 0.9rem; /* Asegúrate de que el tamaño de fuente sea coherente */
-  border-radius: 0.75rem;
-  border-width: 1px;
-  border-style: solid;
-  border-color: #ccc;
-  margin-left: 0.5rem;
-  margin-top: 0.25rem;
-  height: 2rem;
-  padding: 0.25rem;
-  padding-left: 0.5rem;
-}
-
-.select-style-calculator:focus {
-  border-color: #ccc; /* Change border color on focus */
-  outline: none; /* Remove default outline */
-  box-shadow: 0 0 0 1px rgba(100, 100, 100, 0.5); /* Optional: blue focus shadow */
+@media screen and (max-width: 600px) {
+  #contact,
+  footer {
+    height: 40vh;
+  }
+  #profile {
+    height: 83vh;
+    margin-bottom: 0;
+  }
+  article {
+    font-size: 1rem;
+  }
+  footer nav {
+    height: fit-content;
+    margin-bottom: 2rem;
+  }
+  .about-containers,
+  .contact-info-upper-container,
+  .btn-container {
+    flex-wrap: wrap;
+  }
+  .contact-info-container {
+    margin: 0;
+  }
+  .contact-info-container p,
+  .nav-links li a {
+    font-size: 1rem;
+  }
+  .experience-sub-title {
+    font-size: 1.25rem;
+  }
+  .logo {
+    font-size: 1.5rem;
+  }
+  .nav-links {
+    flex-direction: column;
+    gap: 0.5rem;
+    text-align: center;
+  }
+  .section__pic-container {
+    width: auto;
+    height: 46vw;
+    justify-content: center;
+  }
+  .section__text__p2 {
+    font-size: 1.25rem;
+  }
+  .title {
+    font-size: 2rem;
+  }
+  .text-container {
+    text-align: justify;
+  }
 }
