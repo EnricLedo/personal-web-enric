@@ -19,36 +19,69 @@ document.getElementById('formulario').addEventListener('submit', function(event)
     cargarVariable(variableSeleccionada)
         .then(stock => {
             if (stock !== null) {
-                let resultado = calculoMenorRentabilidad(nDays, stock);
-                document.getElementById('resultado').innerText = 'El resultado de la suma es: ' + resultado;
+                document.getElementById('resultado').innerText = calculoMenorRentabilidad(nDays, stock);
             } else {
                 document.getElementById('resultado').innerText = 'Hubo un error al cargar la variable.';
             }
         });
 });
 
-
 //Este método pretende calcular cual ha sido el peor momento para invertir en un activo en nDays.
-function calculoMenorRentabilidad(nDays, stock) {
+function calculoMenorRentabilidad(nDays, stockAlReves) {
     
-    let fechas = Object.keys(stock);
+    let fechas = Object.keys(stockAlReves);
     fechas.sort((a, b) => new Date(a) - new Date(b));
-    
-    for (let i = 0; i < fechas.length-nDays; i++) {
-        
-        //Lineas insulsas
+
+    const stock = Object.fromEntries(
+        Object.entries(stockAlReves)
+            .sort((a, b) => new Date(a[0]) - new Date(b[0]))
+    );
+
+    let peorResultado = 10000000;
+    let mejorResultado = -10000000;
+    let peorFechaInicial;
+    let peorFechaFinal;
+    let mejorFechaInicial;
+    let mejorFechaFinal;
+
+    for (let i = 0; i < fechas.length; i++) { //Si restas nDays, puesto que los findes esta cerrada la bolsa y ese valor no se muestra, acaban faltando muchos datos.
+
+        let firstDate = fechas[i];
+
         let fechaInicial = new Date(firstDate);
         fechaInicial.setDate(fechaInicial.getDate() + nDays);
-        
-        
-        let firstDate = fechas[i];
-        let secondDate = formatDateToMDY(fechaInicial);
 
+        let secondDate = findNextAvailableDate(fechaInicial, stock);
 
-        let valorInicial = stock[firstDate];
-        if()
+        if (!secondDate) {
+            if(i===0){
+                console.warn("No ha pasado tanto tiempo!");
+                return "No ha pasado tanto tiempo!";
+            }
+            console.warn("Ja no hi ha més dades.");
+            break;
+        } else {
+            const firstValue = parseFloat(stock[firstDate].replace(',', ''));
+            const secondValue = parseFloat(stock[secondDate].replace(',', ''));
 
+            let rentabilidad = calcularRentabilidadAnualizada(firstValue, secondValue, nDays)
+            console.log(rentabilidad);
+
+            if(rentabilidad < peorResultado){
+                peorResultado = rentabilidad;
+                peorFechaInicial = firstDate;
+                peorFechaFinal = secondDate;
+            }
+            if (rentabilidad > mejorResultado){
+                mejorResultado = rentabilidad;
+                mejorFechaInicial = firstDate;
+                mejorFechaFinal = secondDate;
+            }
+        }
     }
+
+    return "La mejor rentabilidad anualizada en " + nDays + " días ha sido de: " + mejorResultado.toFixed(2) + "%, entre " + mejorFechaInicial + " y " + mejorFechaFinal + ". \n" +
+        "La peor rentabilidad anualizada en " + nDays + " días ha sido de: " + peorResultado.toFixed(2) + "%, entre " + peorFechaInicial + " y " + peorFechaFinal + "."
 }
 
 function calcularRentabilidadAnualizada(valorInicial, valorFinal, nDays) {
@@ -68,3 +101,16 @@ function formatDateToMDY(date) {
     return `${mm}/${dd}/${yyyy}`;
 }
 
+function findNextAvailableDate(fechaInicial, stock, maxDiasBuscar = 10) {
+    let intentos = 0;
+    let fechaFormateada = formatDateToMDY(fechaInicial);
+
+    while (!stock.hasOwnProperty(fechaFormateada) && intentos < maxDiasBuscar) {
+        fechaInicial.setDate(fechaInicial.getDate() + 1);
+        fechaFormateada = formatDateToMDY(fechaInicial);
+        intentos++;
+    }
+
+    // Si se encontró una fecha válida, devuélvela; si no, devuelve null.
+    return stock.hasOwnProperty(fechaFormateada) ? fechaFormateada : null;
+}
