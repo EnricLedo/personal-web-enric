@@ -1,6 +1,6 @@
 // Función para cargar la variable desde el archivo JSON seleccionado
 function cargarVariable(nombreVariable) {
-    return fetch('/historicalData/data/' + nombreVariable + '.json')
+    return fetch('/historicalData/data/formatedToJson/' + nombreVariable + '.json')
         .then(response => response.json())
         .then(data => data.stock)
         .catch(error => {
@@ -8,6 +8,7 @@ function cargarVariable(nombreVariable) {
             return null;
         });
 }
+
 
 document.getElementById('formulario').addEventListener('submit', function(event) {
     event.preventDefault(); 
@@ -25,6 +26,27 @@ document.getElementById('formulario').addEventListener('submit', function(event)
             }
         });
 });
+
+function cargarVariablesDisponibles() {
+    fetch('/historicalData/lista_valores.json')
+        .then(response => response.json())
+        .then(variables => {
+            const selector = document.getElementById('selector');
+            selector.innerHTML = '';
+            variables.forEach(variable => {
+                const option = document.createElement('option');
+                option.value = variable;
+                option.textContent = variable;
+                selector.appendChild(option);
+            });
+        })
+        .catch(error => {
+            console.error("Error cargando la lista de variables:", error);
+        });
+}
+
+window.addEventListener('DOMContentLoaded', cargarVariablesDisponibles);
+
 
 //Este método pretende calcular cual ha sido el peor momento para invertir en un activo en nDays.
 function calculoMenorRentabilidad(nDays, stockAlReves) {
