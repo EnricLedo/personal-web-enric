@@ -27,6 +27,50 @@ document.getElementById('formulario').addEventListener('submit', function(event)
         });
 });
 
+function mostrarPrimerYUltimo(nombreVariable) {
+    fetch('/historicalData/data/formatedToJson/' + nombreVariable + '.json')
+        .then(response => response.json())
+        .then(data => {
+            const stockObj = data.stock;
+            const fechas = Object.keys(stockObj);
+            if (fechas.length > 0) {
+                // Ordena las fechas para asegurar el orden cronológico
+                fechas.sort((a, b) => {
+                    // Formato MM/DD/YYYY, conviértelo a YYYY-MM-DD para comparar
+                    const [ma, da, ya] = a.split('/');
+                    const [mb, db, yb] = b.split('/');
+                    const dateA = new Date(`${ya}-${ma}-${da}`);
+                    const dateB = new Date(`${yb}-${mb}-${db}`);
+                    return dateA - dateB;
+                });
+                const primeraFecha = fechas[0];
+                const ultimaFecha = fechas[fechas.length - 1];
+                const primerValor = stockObj[primeraFecha];
+                const ultimoValor = stockObj[ultimaFecha];
+                document.getElementById('infoValores').innerText =
+                    `Primer valor: ${primerValor} (${primeraFecha})\nÚltimo valor: ${ultimoValor} (${ultimaFecha})`;
+            } else {
+                document.getElementById('infoValores').innerText = 'No hay datos disponibles.';
+            }
+        })
+        .catch(error => {
+            document.getElementById('infoValores').innerText = 'Error al cargar datos.';
+        });
+}
+
+document.getElementById('selector').addEventListener('change', function() {
+    mostrarPrimerYUltimo(this.value);
+});
+
+// Opcional: mostrar los valores del primer elemento al cargar la página
+window.addEventListener('DOMContentLoaded', function() {
+    const selector = document.getElementById('selector');
+    if (selector.value) {
+        mostrarPrimerYUltimo(selector.value);
+    }
+});
+
+
 function cargarVariablesDisponibles() {
     fetch('/historicalData/lista_valores.json')
         .then(response => response.json())
