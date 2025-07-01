@@ -38,6 +38,26 @@ function initI18n(translations) {
     });
 }
 
+function downloadPDF() {
+    const lang = localStorage.getItem('siteLang') || 'en';
+    let pdfPath = '';
+
+    switch(lang) {
+        case 'ca':
+            pdfPath = './assets/Curriculum 2025 - CA.pdf';
+            break;
+        case 'es':
+            pdfPath = './assets/Curriculum 2025 - ES.pdf';
+            break;
+        case 'en':
+        default:
+            pdfPath = './assets/Curriculum 2025 - EN.pdf';
+            break;
+    }
+
+    window.open(pdfPath, '_blank');
+}
+
 function translateHead(language, translations) {
     // Traducir el título
     if (translations[language] && translations[language]['title']) {
