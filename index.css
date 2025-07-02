@@ -261,6 +261,17 @@ section {
   gap: 1rem;
 }
 
+button.btn.btn-color-2 {
+  color: black; /* sin !important */
+  -webkit-text-fill-color: black; /* Safari-specific */
+  text-decoration: none !important;
+}
+
+button.btn.btn-color-2:hover {
+  color: white !important;
+  -webkit-text-fill-color: white !important;
+}
+
 /* ABOUT SECTION */
 
 #about {
