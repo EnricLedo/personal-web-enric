@@ -262,8 +262,8 @@ section {
 }
 
 button.btn.btn-color-2 {
-  color: black; /* sin !important */
-  -webkit-text-fill-color: black; /* Safari-specific */
+  color: black;
+  -webkit-text-fill-color: black;
   text-decoration: none !important;
 }
 
