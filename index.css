@@ -9,6 +9,12 @@
 
 body {
   font-family: "Poppins", sans-serif;
+  visibility: hidden;
+
+}
+
+body.translations-ready {
+  visibility: visible;
 }
 
 html {

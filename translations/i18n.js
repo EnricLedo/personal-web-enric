@@ -30,34 +30,6 @@ function translatePage(language, translations) {
     });
 }
 
-function initI18n(translations) {
-    document.addEventListener("DOMContentLoaded", function() {
-        const langCode = getUserLang();
-        translateHead(langCode, translations);
-        translatePage(langCode, translations);
-    });
-}
-
-function downloadPDF() {
-    const lang = localStorage.getItem('siteLang') || 'en';
-    let pdfPath = '';
-
-    switch(lang) {
-        case 'ca':
-            pdfPath = './assets/Curriculum 2025 - CA.pdf';
-            break;
-        case 'es':
-            pdfPath = './assets/Curriculum 2025 - ES.pdf';
-            break;
-        case 'en':
-        default:
-            pdfPath = './assets/Curriculum 2025 - EN.pdf';
-            break;
-    }
-
-    window.open(pdfPath, '_blank');
-}
-
 function translateHead(language, translations) {
     // Traducir el título
     if (translations[language] && translations[language]['title']) {
@@ -81,3 +53,37 @@ function translateHead(language, translations) {
     }
 }
 
+function initI18n(translations) {
+    const langCode = getUserLang();
+    translateHead(langCode, translations);
+    translatePage(langCode, translations);
+
+    // Mostrar el contenido cuando se haya traducido todo
+    document.body.classList.add('translations-ready');
+}
+
+document.addEventListener("DOMContentLoaded", function() {
+    // Solo iniciar traducción cuando DOM esté listo
+    initI18n(TRANSLATIONS);
+});
+
+
+function downloadPDF() {
+    const lang = localStorage.getItem('siteLang') || 'en';
+    let pdfPath = '';
+
+    switch(lang) {
+        case 'ca':
+            pdfPath = './assets/Curriculum 2025 - CA.pdf';
+            break;
+        case 'es':
+            pdfPath = './assets/Curriculum 2025 - ES.pdf';
+            break;
+        case 'en':
+        default:
+            pdfPath = './assets/Curriculum 2025 - EN.pdf';
+            break;
+    }
+
+    window.open(pdfPath, '_blank');
+}
