@@ -23,16 +23,16 @@ document.addEventListener('DOMContentLoaded', () => {
     spans.forEach((span, i) => {
         timeline.to(span, {
             y: -4,
-            duration: 0.2,
+            duration: 0.15,
             ease: "power1.inOut",
             yoyo: true,
             repeat: 1,
             repeatDelay: 0,
-            delay: i * 0.05
+            delay: i * 0.03
         }, 0);
     });
 
-    const animDuration = (spans.length - 1) * 0.05 + 0.4;
+    const animDuration = (spans.length - 1) * 0.04 + 0.4;
 
     timeline.repeatDelay(4 - animDuration);
 });
