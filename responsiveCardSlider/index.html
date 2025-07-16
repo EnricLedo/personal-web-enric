@@ -1,67 +1,428 @@
 <!DOCTYPE html>
-<!-- Coding By CodingNepal - www.codingnepalweb.com -->
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Card Slider HTML and CSS | CodingNepal</title>
-  <!-- Linking SwiperJS CSS -->
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
-  <link rel="stylesheet" href="style.css">
-</head>
-<body>
-  <div class="container swiper">
-    <div class="slider-wrapper">
-      <div class="card-list swiper-wrapper">
-        <div class="card-item swiper-slide">
-
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Enric Ledo, desenvolupador backend amb experiència en Java, Spring Boot i Kotlin. Amb estudis en desenvolupament d'aplicacions multiplataforma i un enfocament en la creació de solucions eficients. Descobreix els meus projectes, experiència i habilitats tècniques i interpersonals.">
+    <meta name="keywords" content="Enric Ledo, desenvolupador, backend, Java, Spring Boot, Kotlin, desenvolupament d'aplicacions multiplataforma, projectes, experiència, habilitats tècniques, habilitats interpersonals">
+    <title>Enric Ledo - Desenvolupador</title>
+    <link rel="icon" href="/assets/logoEL.png" type="image/png">
+    <link rel="stylesheet" href="index.css" />
+    <script src="/translations/home.js"></script>
+    <script src="/translations/i18n.js"></script>
+    <script>
+      document.addEventListener("DOMContentLoaded", function() {
+        initI18n(TRANSLATIONS);
+      });
+    </script>
+  </head>
+  <body>
+    <nav id="desktop-nav">
+      <div class="logo" data-i18n="enric_ledo"></div>
+      <div>
+        <ul class="nav-links">
+          <li><a href="#about" data-i18n="about_me"></a></li>
+          <li><a href="#experience" data-i18n="experience"></a></li>
+          <li><a href="#projects" data-i18n="projects"></a></li>
+          <li><a href="#contact" data-i18n="contact"></a></li>
+        </ul> 
+      </div>
+    </nav>
+    <nav id="hamburger-nav">
+      <div class="logo" data-i18n="enric_ledo"></div>
+      <div class="hamburger-menu">
+        <div class="hamburger-icon" onclick="toggleMenu()">
+          <span></span>
+          <span></span>
+          <span></span>
         </div>
-        <div class="card-item swiper-slide">
-          <img src="images/img-2.jpg" alt="User Image" class="user-image">
-          <h2 class="user-name">Sarah Johnson</h2>
-          <p class="user-profession">Graphic Designer</p>
-          <button class="message-button">Message</button>
+        <ul class="menu-links">
+          <li><a href="#about" onclick="toggleMenu()" data-i18n="about_me"></a></li>
+          <li><a href="#experience" onclick="toggleMenu()" data-i18n="experience"></a></li>
+          <li><a href="#projects" onclick="toggleMenu()" data-i18n="projects"></a></li>
+          <li><a href="#contact" onclick="toggleMenu()" data-i18n="contact"></a></li>
+        </ul>
+      </div>
+    </nav>
+    <section id="profile">
+      <div class="section__pic-container">
+        <img src="/assets/enric_ledo_profile-rounded.webp" alt="Enric Ledo foto de perfil" />
+      </div>
+      <div class="section__text">
+        <p class="section__text__p1" data-i18n="hello_i_am"></p>
+        <h1 class="title" data-i18n="enric_ledo"></h1>
+        <p class="section__text__p2" data-i18n="backend_developer"></p>
+        <div class="btn-container">
+          <button
+            id="btn-wave"
+            class="btn btn-color-2"
+            onclick="downloadPDF()"
+            data-i18n="download_cv"
+          ></button>
+          <button
+            class="btn btn-color-1"
+            onclick="location.href='./#contact'"
+            data-i18n="contact_info"
+          ></button>
         </div>
-
-        <div class="card-item swiper-slide">
-          <img src="images/img-3.jpg" alt="User Image" class="user-image">
-          <h2 class="user-name">Michael Brown</h2>
-          <p class="user-profession">Project Manager</p>
-          <button class="message-button">Message</button>
-        </div>
-
-        <div class="card-item swiper-slide">
-          <img src="images/img-4.jpg" alt="User Image" class="user-image">
-          <h2 class="user-name">Emily Davis</h2>
-          <p class="user-profession">Marketing Specialist</p>
-          <button class="message-button">Message</button>
-        </div>
-
-        <div class="card-item swiper-slide">
-          <img src="images/img-5.jpg" alt="User Image" class="user-image">
-          <h2 class="user-name">Christopher Garcia</h2>
-          <p class="user-profession">Data Scientist</p>
-          <button class="message-button">Message</button>
-        </div>
-
-        <div class="card-item swiper-slide">
-          <img src="images/img-6.jpg" alt="User Image" class="user-image">
-          <h2 class="user-name">Richard Wilson</h2>
-          <p class="user-profession">Product Designer</p>
-          <button class="message-button">Message</button>
+        <div id="socials-container">
+          <img
+            src="/assets/linkedin.png"
+            alt="Mi perfil de LinkedIn"
+            role="button"
+            class="icon"
+            onclick="window.open('https://www.linkedin.com/in/enric-ledo')"
+          />
+          <img
+            src="/assets/github.png"
+            alt="Mi perfil de Github"
+            role="button"
+            class="icon"
+            onclick="window.open('https://www.github.com/enricLedo')"
+          />
         </div>
       </div>
-
-      <div class="swiper-pagination"></div>
-      <div class="swiper-slide-button swiper-button-prev"></div>
-      <div class="swiper-slide-button swiper-button-next"></div>
-    </div>
-  </div>
-
-  <!-- Linking SwiperJS script -->
-  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
-
-  <!-- Linking custom script -->
-  <script src="script.js"></script>
-</body>
+      <svg
+        class="icon arrow"
+        role="img"
+        aria-label="Arrow icon"
+        onclick="location.href='./#about'"
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 24 24">
+        <path d="m4.5 5.25 7.5 7.5 7.5-7.5m-15 6 7.5 7.5 7.5-7.5" fill="none" stroke="currentColor" stroke-width="2"/>
+      </svg>
+    </section>
+    <section id="about">
+      <p class="section__text__p1" data-i18n="get_to_know_more"></p>
+      <h1 class="title" data-i18n="about_me"></h1>
+      <div class="section-container">
+        <div class="section__pic-container">
+          <img
+            src="/assets/castellers_profile_picture.webp"
+            alt="Profile picture"
+            class="about-pic"
+          />
+        </div>
+        <div class="about-details-container">
+          <div class="about-containers">
+            <div class="details-container">
+              <img
+                src="/assets/experience.png"
+                alt="Experience icon"
+                class="icon"
+              />
+              <h3 data-i18n="experience"></h3>
+              <p>
+                <span data-i18n="seven_months"></span><br />
+                <span data-i18n="kotlin_development"></span>
+              </p>
+            </div>
+            <div class="details-container">
+              <img
+                src="/assets/education.png"
+                alt="Education icon"
+                class="icon"
+              />
+              <h3 data-i18n="education"></h3>
+              <p>
+                <span data-i18n="technical_degree"></span><br />
+                <span data-i18n="dam"></span>
+              </p>
+            </div>
+          </div>
+          <div class="text-container">
+            <p>
+              <span data-i18n="description_of_me_part_1"></span>
+              <span style="text-decoration: underline; color: rgb(85, 85, 85);">
+                <a href="https://es.wikipedia.org/wiki/Castell" target="_blank" style="color: rgb(85, 85, 85);" data-i18n="castells"></a></span><span data-i18n="description_of_me_part_2"></span>
+            </p>
+          </div>          
+        </div>
+      </div>
+      <svg 
+        class="icon arrow"
+        role="img"
+        aria-label="Arrow icon"
+        onclick="location.href='./#experience'"
+        xmlns="http://www.w3.org/2000/svg" 
+        viewBox="0 0 24 24">
+        <path d="m4.5 5.25 7.5 7.5 7.5-7.5m-15 6 7.5 7.5 7.5-7.5" fill="none" stroke="currentColor" stroke-width="2"/>
+      </svg>
+    </section>
+    <section id="experience">
+      <p class="section__text__p1" data-i18n="explore_my"></p>
+      <h1 class="title" data-i18n="experience"></h1>
+      <div class="experience-details-container">
+        <div class="about-containers">
+          <div class="details-container">
+            <h2 class="experience-sub-title" data-i18n="technical_skills"></h2>
+            <div class="article-container">
+              <article>
+                <img
+                  src="/assets/checkmark.png"
+                  alt="Experience icon"
+                  class="icon"
+                />
+                <div>
+                  <h3 data-i18n="java"></h3>
+                  <p data-i18n="experienced"></p>
+                </div>
+              </article>
+              <article>
+                <img
+                  src="/assets/checkmark.png"
+                  alt="Experience icon"
+                  class="icon"
+                />
+                <div>
+                  <h3 data-i18n="aws"></h3>
+                  <p data-i18n="passionate"></p>
+                </div>
+              </article>
+              <article>
+                <img
+                  src="/assets/checkmark.png"
+                  alt="Experience icon"
+                  class="icon"
+                />
+                <div>
+                  <h3 data-i18n="mysql"></h3>
+                  <p data-i18n="experienced"></p>
+                </div>
+              </article>
+              <article>
+                <img
+                  src="/assets/checkmark.png"
+                  alt="Experience icon"
+                  class="icon"
+                />
+                <div>
+                  <h3 data-i18n="jetpack_compose"></h3>
+                  <p data-i18n="intermediate"></p>
+                </div>
+              </article>
+              <article>
+                <img
+                  src="/assets/checkmark.png"
+                  alt="Experience icon"
+                  class="icon"
+                />
+                <div>
+                  <h3 data-i18n="spring_boot"></h3>
+                  <p data-i18n="intermediate"></p>
+                </div>
+              </article>
+              <article>
+                <img
+                  src="/assets/checkmark.png"
+                  alt="Experience icon"
+                  class="icon"
+                />
+                <div>
+                  <h3 data-i18n="jpa"></h3>
+                  <p data-i18n="intermediate"></p>
+                </div>
+              </article>
+            </div>
+          </div>
+          <div class="details-container">
+            <h2 class="experience-sub-title" data-i18n="soft_skills"></h2>
+            <div class="article-container">
+              <article>
+                <img
+                  src="/assets/open-book.png"
+                  alt="Experience icon"
+                  class="icon"
+                />
+                <div>
+                  <h3 data-i18n="learner"></h3>
+                </div>
+              </article>
+              <article>
+                <img
+                  src="/assets/smiley.png"
+                  alt="Experience icon"
+                  class="icon"
+                />
+                <div>
+                  <h3 data-i18n="cheerful"></h3>
+                </div>
+              </article>
+              <article>
+                <img
+                  src="/assets/rocket.png"
+                  alt="Experience icon"
+                  class="icon"
+                />
+                <div>
+                  <h3 data-i18n="hardwork"></h3>
+                </div>
+              </article>
+              <article>
+                <img
+                  src="/assets/bulb.png"
+                  alt="Experience icon"
+                  class="icon"
+                />
+                <div>
+                  <h3 data-i18n="logical"></h3>
+                </div>
+              </article>
+              <article>
+                <img
+                  src="/assets/social.png"
+                  alt="Experience icon"
+                  class="icon"
+                />
+                <div>
+                  <h3 data-i18n="social"></h3>
+                </div>
+              </article>
+              <article>
+                <img
+                  src="/assets/teamwork.png"
+                  alt="Experience icon"
+                  class="icon"
+                />
+                <div>
+                  <h3 data-i18n="team_player"></h3>
+                </div>
+              </article>
+            </div>
+          </div>
+        </div>
+      </div>
+      <svg 
+        class="icon arrow"
+        role="img"
+        aria-label="Arrow icon"
+        onclick="location.href='./#projects'" 
+        xmlns="http://www.w3.org/2000/svg" 
+        viewBox="0 0 24 24">
+        <path d="m4.5 5.25 7.5 7.5 7.5-7.5m-15 6 7.5 7.5 7.5-7.5" fill="none" stroke="currentColor" stroke-width="2"/>
+      </svg>
+    </section>
+    <section id="projects">
+      <p class="section__text__p1" data-i18n="browse_my_recent"></p>
+      <h1 class="title" data-i18n="projects"></h1>
+      <div class="experience-details-container">
+        <div class="about-containers">
+          <div class="details-container">
+            <div class="article-container">
+              <img
+                src="/assets/collage_fonts_terrassa_alianzas.webp"
+                alt="Project 1"
+                class="project-img"
+              />
+            </div>
+            <h2 class="experience-sub-title project-title" data-i18n="apps_for_upc"></h2>
+            <div class="btn-container">
+              <button
+                class="btn btn-color-2 project-btn"
+                onclick="window.open('https://play.google.com/store/apps/details?id=oat.copernic.projecte.fonts_terrassa', '_blank')"
+                data-i18n="fonts_terrassa"
+              ></button>
+              <button
+                class="btn btn-color-2 project-btn"
+                onclick="window.open('https://play.google.com/store/apps/details?id=cat.copernic.alianzas')"
+                data-i18n="alianzas"
+              ></button>
+            </div>
+            <br><ul class="technologies-used" data-i18n="technologies_apps_upc"></ul>
+          </div>
+          <div class="details-container">
+            <div class="article-container">
+              <img
+                src="/assets/mr_motor_master.webp"
+                alt="Project 2"
+                class="project-img"
+              />
+            </div>
+            <h2 class="experience-sub-title project-title" data-i18n="mr_motor_master"></h2>
+            <div class="btn-container">
+              <button
+                class="btn btn-color-2 project-btn"
+                onclick="window.open('https://github.com/EnricLedo/MrMotorMaster')"
+                data-i18n="github"
+              ></button>
+            </div>
+            <br><ul class="technologies-used" data-i18n="technologies_mr_motor_master"></ul>
+          </div>
+          <div class="details-container">
+            <div class="article-container">
+              <img
+                src="/assets/parkKing.webp"
+                alt="Project 3"
+                class="project-img"
+              />
+            </div>
+            <h2 class="experience-sub-title project-title" data-i18n="parkking"></h2>
+            <div class="btn-container">
+              <button
+                class="btn btn-color-2 project-btn"
+                onclick="window.open('https://github.com/EnricLedo/ParkKing')"
+                data-i18n="github"
+              ></button>
+            </div>
+            <br><ul class="technologies-used" data-i18n="technologies_parkking"></ul>
+          </div>
+        </div>
+      </div>
+      <svg 
+        class="icon arrow"
+        role="img"
+        aria-label="Arrow icon"
+        onclick="location.href='./#contact'"
+        xmlns="http://www.w3.org/2000/svg" 
+        viewBox="0 0 24 24">
+        <path d="m4.5 5.25 7.5 7.5 7.5-7.5m-15 6 7.5 7.5 7.5-7.5" fill="none" stroke="currentColor" stroke-width="2"/>
+      </svg>
+    </section>
+    <section id="contact">
+      <p class="section__text__p1" data-i18n="get_in_touch"></p>
+      <h1 class="title" data-i18n="contact_me"></h1>
+      <div class="contact-info-upper-container">
+        <div class="contact-info-container">
+          <img
+            src="/assets/email.png"
+            alt="Email icon"
+            class="icon contact-icon email-icon"
+          />
+          <p><a href="mailto:enricledomuntal@gmail.com" data-i18n="email"></a></p>
+        </div>
+        <div class="contact-info-container">
+          <img
+            src="/assets/linkedin.png"
+            alt="LinkedIn icon"
+            class="icon contact-icon"
+          />
+          <p><a href="https://www.linkedin.com/in/enric-ledo" target="_blank" data-i18n="linkedin"></a></p>
+        </div>
+      </div>
+    </section>
+    <footer>
+      <nav>
+        <div class="nav-links-container">
+          <ul class="nav-links">
+            <li><a href="#about" data-i18n="about_me"></a></li>
+            <li><a href="#experience" data-i18n="experience"></a></li>
+            <li><a href="#projects" data-i18n="projects"></a></li>
+            <li><a href="#contact" data-i18n="contact"></a></li>
+          </ul>
+        </div>
+      </nav>
+      <p>
+        <span data-i18n="copyright"></span>&#169;
+        <span data-i18n="all_rights_reserved"></span>
+      </p>
+      <div class="btn-container">
+        <button class="btn btn-color-2" style="margin: 20px;" onclick="window.location.href='/calculator/calculator.html'">Work In Progress</button>
+      </div>
+    </footer>
+    <script src="/mainMenu/responsiveMenu.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="/animations/title.js"></script>
+    <script src="/animations/buttonWave.js"></script>
+  </body>
 </html>
