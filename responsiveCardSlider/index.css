@@ -391,6 +391,39 @@ article .icon {
   border-color: rgb(163, 163, 163);
 }
 
+.swiper {
+  width: 100%;
+  padding: 2rem 0;
+}
+
+/* Evita que las tarjetas se estiren */
+.swiper-slide {
+  display: flex;
+  justify-content: center;
+}
+
+.swiper-slide .details-container {
+  width: 100%;
+  max-width: 320px;
+  margin: 0 auto;
+}
+
+.experience-details-container {
+  overflow: hidden;
+}
+
+.slider-wrapper {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem 0;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
 /* CONTACT */
 
 #contact {
