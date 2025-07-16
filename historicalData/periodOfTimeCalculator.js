@@ -20,7 +20,7 @@ document.getElementById('formulario').addEventListener('submit', function(event)
     cargarVariable(variableSeleccionada)
         .then(stock => {
             if (stock !== null) {
-                document.getElementById('resultado').innerText = calculoMenorRentabilidad(nDays, stock);
+                document.getElementById('resultado').innerText = calculoMenorMayorRentabilidad(nDays, stock);
             } else {
                 document.getElementById('resultado').innerText = 'Hubo un error al cargar la variable.';
             }
@@ -45,10 +45,14 @@ function mostrarPrimerYUltimo(nombreVariable) {
                 });
                 const primeraFecha = fechas[0];
                 const ultimaFecha = fechas[fechas.length - 1];
-                const primerValor = stockObj[primeraFecha];
-                const ultimoValor = stockObj[ultimaFecha];
+                let primerValor = stockObj[primeraFecha];
+                let ultimoValor = stockObj[ultimaFecha];
+                primerValor = parseFloat(primerValor);
+                ultimoValor = parseFloat(ultimoValor);
+
                 document.getElementById('infoValores').innerText =
-                    `Primer valor: ${primerValor} (${primeraFecha})\nÚltimo valor: ${ultimoValor} (${ultimaFecha})`;
+                    `Primer valor: ${primerValor.toFixed(2)} (${primeraFecha})\nÚltimo valor: ${ultimoValor.toFixed(2)} (${ultimaFecha})`;
+
             } else {
                 document.getElementById('infoValores').innerText = 'No hay datos disponibles.';
             }
@@ -92,8 +96,8 @@ function cargarVariablesDisponibles() {
 window.addEventListener('DOMContentLoaded', cargarVariablesDisponibles);
 
 
-//Este método pretende calcular cual ha sido el peor momento para invertir en un activo en nDays.
-function calculoMenorRentabilidad(nDays, stockAlReves) {
+//Este método pretende calcular cual ha sido el peor y mejor momento para invertir en un activo en nDays.
+function calculoMenorMayorRentabilidad(nDays, stockAlReves) {
     
     let fechas = Object.keys(stockAlReves);
     fechas.sort((a, b) => new Date(a) - new Date(b));
@@ -103,8 +107,33 @@ function calculoMenorRentabilidad(nDays, stockAlReves) {
             .sort((a, b) => new Date(a[0]) - new Date(b[0]))
     );
 
+    ///////////////////////////////////
+    let primeraFecha = fechas[0];
+    let ultimaFecha = fechas[fechas.length - 1];
+
+    let valueFirstDay = stock[primeraFecha];
+    let valueLastDay = stock[ultimaFecha];
+
+    console.log(primeraFecha, valueFirstDay, "valueFirstDay");
+    console.log(ultimaFecha, valueLastDay, "valueLastDay");
+
+    let date1 = new Date(primeraFecha);
+    let date2 = new Date(ultimaFecha);
+
+    // Diferencia en milisegundos
+    let diferenciaMs = Math.abs(date2 - date1);
+
+    // Convertimos la diferencia a días
+    let diferenciaDias = Math.floor(diferenciaMs / (1000 * 60 * 60 * 24));
+
+    let rentabilitatPromig = calcularRentabilidadAnualizada(valueFirstDay, valueLastDay, diferenciaDias);
+    //Només he de calcular el temps en dies entre primera y ultimaFecha
+    
+    ///////////////////////////////////
+    
     let peorResultado = 10000000;
     let mejorResultado = -10000000;
+
     let peorFechaInicial;
     let peorFechaFinal;
     let mejorFechaInicial;
@@ -129,9 +158,7 @@ function calculoMenorRentabilidad(nDays, stockAlReves) {
         } else {
             const firstValue = parseFloat(stock[firstDate].replace(',', ''));
             const secondValue = parseFloat(stock[secondDate].replace(',', ''));
-
             let rentabilidad = calcularRentabilidadAnualizada(firstValue, secondValue, nDays)
-            console.log(rentabilidad);
 
             if(rentabilidad < peorResultado){
                 peorResultado = rentabilidad;
@@ -147,7 +174,9 @@ function calculoMenorRentabilidad(nDays, stockAlReves) {
     }
 
     return "La mejor rentabilidad anualizada en " + nDays + " días ha sido de: " + mejorResultado.toFixed(2) + "%, entre " + mejorFechaInicial + " y " + mejorFechaFinal + ". \n" +
-        "La peor rentabilidad anualizada en " + nDays + " días ha sido de: " + peorResultado.toFixed(2) + "%, entre " + peorFechaInicial + " y " + peorFechaFinal + "."
+        "La peor rentabilidad anualizada en " + nDays + " días ha sido de: " + peorResultado.toFixed(2) + "%, entre " + peorFechaInicial + " y " + peorFechaFinal + ". \n" +
+        "La rentabilidad anualizada promedio de esta inversión es de " + rentabilitatPromig.toFixed(2) + "%. A lo largo de " + diferenciaDias + " días." +
+        " Sumando una revalorización total del " + (valueLastDay*100/valueFirstDay).toFixed(2) + "%"
 }
 
 function calcularRentabilidadAnualizada(valorInicial, valorFinal, nDays) {
