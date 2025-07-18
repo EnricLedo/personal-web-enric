@@ -373,6 +373,7 @@ article .icon {
 
 #projects {
   position: relative;
+  margin: 0 7rem;
 }
 
 .project-img {
@@ -389,39 +390,6 @@ article .icon {
 .project-btn {
   color: black;
   border-color: rgb(163, 163, 163);
-}
-
-.swiper {
-  width: 100%;
-  padding: 2rem 0;
-}
-
-/* Evita que las tarjetas se estiren */
-.swiper-slide {
-  display: flex;
-  justify-content: center;
-}
-
-.swiper-slide .details-container {
-  width: 100%;
-  max-width: 320px;
-  margin: 0 auto;
-}
-
-.experience-details-container {
-  overflow: hidden;
-}
-
-.slider-wrapper {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 2rem 0;
-}
-
-*,
-*::before,
-*::after {
-  box-sizing: border-box;
 }
 
 /* CONTACT */
@@ -515,6 +483,9 @@ footer p {
   section {
     margin: 0 5%;
   }
+  #projects {
+    margin: 0 2.5%;
+  }
   .section__pic-container {
     width: 275px;
     height: 275px;
@@ -579,3 +550,35 @@ footer p {
     text-align: justify;
   }
 }
+
+/*Això s'ha de moure de lloc*/
+.swiper {
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+  margin-top: 2rem;
+}
+
+.swiper-slide {
+  background: white;
+  border-radius: 2rem;
+  text-align: center;
+  border: 1px solid rgb(163, 163, 163);
+  box-sizing: border-box;
+  padding: 1.5rem;
+}
+
+.slider-wrapper {
+  overflow: hidden;
+  margin: 0 50px 1px;
+}
+
+.swiper-pagination-bullet-active {
+  background: #1223ff;
+}
+
+.project-image{
+  width: 90%;
+  align-content: center;
+}
+
