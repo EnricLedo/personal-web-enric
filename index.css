@@ -546,3 +546,46 @@ footer p {
     text-align: justify;
   }
 }
+
+/*Swiper*/
+.swiper {
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+  margin-top: 2rem;
+}
+
+.swiper-slide {
+  padding: 1.5rem;
+  background: white;
+  border-radius: 2rem;
+  border: 0.1rem solid rgb(163, 163, 163);
+  text-align: center;
+  box-sizing: border-box;
+}
+
+.slider-wrapper {
+  overflow: hidden;
+  margin: 0 50px 1px;
+}
+
+.project-image{
+  width: 90%;
+  height: 90%;
+  border-radius: 2rem;
+}
+
+.swiper-button-next,
+.swiper-button-prev {
+  color: #888;
+}
+
+
+.swiper-pagination-bullet {
+  background: #888;
+  opacity: 1;
+}
+
+.swiper-pagination-bullet-active {
+  background: #555;
+}
