@@ -490,6 +490,10 @@ footer p {
   .about-containers {
     margin-top: 0;
   }
+
+  #projects {
+    margin: 0;
+  }
 }
 
 @media screen and (max-width: 600px) {
